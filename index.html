@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demonstração: Dark Mode com Transição</title>
+    <style>
+        /* Estilos básicos e transição suave */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            color: #333333;
+            /* transição de 0.5s para suavizar a mudança de cor */
+            transition: background-color 0.5s ease, color 0.5s ease; 
+        }
+
+        /* Classe que será adicionada/removida pelo JavaScript */
+        body.modo-escuro {
+            background-color: #1e1e24;
+            color: #f0f0f5;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        /* Estilo do botão de alternância */
+        .btn-alternar {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px;
+            background-color: #007bff;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+
+        /* Efeito de hover no botão */
+        .btn-alternar:hover {
+            transform: scale(1.05);
+            background-color: #0056b3;
+        }
+
+        /* Efeito de clique físico no botão */
+        .btn-alternar:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="titulo">Bom dia! ☀️</h1>
+    <p>Clique no botão abaixo para mudar a energia do ambiente.</p>
+    
+    <!-- Botão que vai disparar a função JavaScript -->
+    <button class="btn-alternar"  id="botaoModo">Ativar Modo Escuro</button>
+
+    <script>
+        // 1. Seleciona os elementos HTML que queremos manipular
+        const botao = document.getElementById('botaoModo');
+        const corpoPagina = document.body;
+        const titulo = document.getElementById('titulo');
+
+        // 2. Adiciona um "ouvinte" de evento de clique no botão
+        botao.addEventListener('click', () => {
+            
+            // 3. Alterna (liga/desliga) a classe 'modo-escuro' no body
+            corpoPagina.classList.toggle('modo-escuro');
+
+            // 4. Condicional para mudar os textos dinamicamente
+            if (corpoPagina.classList.contains('modo-escuro')) {
+                botao.textContent = "Ativar Modo Claro";
+                titulo.textContent = "Boa noite! 🌙";
+            } else {
+                botao.textContent = "Ativar Modo Escuro";
+                titulo.textContent = "Bom dia! ☀️";
+            }
+        });
+    </script>
+</body>
+</html>
+
+
